@@ -7,6 +7,11 @@ import com.cice.demopedidos.service.OrderService;
 import com.cice.demopedidos.service.converter.DTOEntityConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+import java.util.Optional;
+
+
+
 public class OrderServiceimpl implements OrderService {
 
     @Autowired
@@ -23,12 +28,28 @@ public class OrderServiceimpl implements OrderService {
     }
 
     @Override
-    public OrderDTO updateOrder(OrderDTO orderDTO) {
-        return null;
+    public OrderDTO updateOrder(Long id, OrderDTO orderDTO) {
+        OrderDTO orderDTO1 = null;
+        Optional<OrderEntity> orderById = orderRepository.findById(id);
+        if(orderById.isPresent()){
+            OrderEntity orderEntity = orderById.get();
+            if(orderDTO.getStatus() != null){
+                orderById.get().setStatus(orderDTO.getStatus());
+            }
+            if(orderDTO.getIProduct() != null){
+                orderById.get().setIProduct(orderDTO.getIProduct());
+            }
+            if(orderDTO.getIUser() != null){
+                orderById.get().setIUser(orderDTO.getIUser());
+            }
+        }
+        OrderEntity orderEntity = orderRepository.save(orderById.get());
+        orderDTO1 = convert.convertToDTO(orderEntity);
+        return orderDTO1;
     }
 
     @Override
-    public User getAllOrderByUser(User user) {
+    public List<OrderDTO> getAllOrderByidUser(Long idUser) {
         return null;
     }
 

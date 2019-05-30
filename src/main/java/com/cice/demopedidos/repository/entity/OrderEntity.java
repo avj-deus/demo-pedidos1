@@ -6,10 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +20,9 @@ public class OrderEntity {
     @Id
     @GeneratedValue
     private Long id;
-    private Product product;
-    private User user;
+    private String status;
+    private Long iProduct;
+    private Long iUser;
+
+
 }

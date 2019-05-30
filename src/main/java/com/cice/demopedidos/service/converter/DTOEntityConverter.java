@@ -10,8 +10,9 @@ public class DTOEntityConverter {
         OrderDTO orderDTO = null;
         orderDTO = new OrderDTO()
                 .setId(orderEntity.getId())
-                .setProduct(orderEntity.getProduct())
-                .setUser(orderEntity.getUser());
+                .setStatus(orderDTO.getStatus())
+                .setIProduct(orderEntity.getIProduct())
+                .setIUser(orderEntity.getIUser());
 
         return orderDTO;
     }
@@ -20,8 +21,9 @@ public class DTOEntityConverter {
         OrderEntity orderEntity = null;
         orderEntity = new OrderEntity()
                 .setId(orderDTO.getId())
-                .setProduct(orderDTO.getProduct())
-                .setUser(orderDTO.getUser());
+                .setStatus(orderDTO.getStatus())
+                .setIProduct(orderDTO.getIProduct())
+                .setIUser(orderDTO.getIUser());
 
         return orderEntity;
     }

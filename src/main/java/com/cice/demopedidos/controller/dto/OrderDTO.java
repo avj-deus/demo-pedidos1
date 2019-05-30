@@ -12,7 +12,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 
 public class OrderDTO {
+
+
     private Long id;
-    private Product product;
-    private User user;
+    private String status;
+    private Long iProduct;
+    private Long iUser;
 }
