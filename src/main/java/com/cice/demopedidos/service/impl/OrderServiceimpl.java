@@ -6,12 +6,14 @@ import com.cice.demopedidos.repository.entity.OrderEntity;
 import com.cice.demopedidos.service.OrderService;
 import com.cice.demopedidos.service.converter.DTOEntityConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-
-
+@Service
 public class OrderServiceimpl implements OrderService {
 
     @Autowired
@@ -50,11 +52,17 @@ public class OrderServiceimpl implements OrderService {
 
     @Override
     public List<OrderDTO> getAllOrderByidUser(Long idUser) {
-        return null;
+        List<OrderDTO> orderDTOList = Collections.EMPTY_LIST;
+        orderDTOList = orderRepository.findAllById(Collections.singleton(idUser))
+                .stream().map(entity -> convert.convertToDTO(entity))
+                .collect(Collectors.toList());
+        return orderDTOList;
     }
 
     @Override
-    public Long getOrderById(Long id) {
-        return null;
+    public Optional<OrderEntity> getOrderById(Long id) {
+        Optional<OrderEntity> orderEntity = null;
+        orderEntity = orderRepository.findById(id);
+        return orderEntity;
     }
 }

@@ -3,7 +3,7 @@ package com.cice.demopedidos.service.impl;
 public enum Status {
 
 
-    PROCESANDO, CANCELADO, ENVIADO, ENTREGADO;
+    PROCESSING, CANCELLED, SENT, DELIVERED;
 
     /*private String status;
 
